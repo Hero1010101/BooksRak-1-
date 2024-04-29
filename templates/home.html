@@ -1,0 +1,21 @@
+{% include 'top.html' %}
+    <title>Silver</title>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    <div class="container">
+    {% for author in authors %}
+      <div class="flex">
+      <span class="name ele">{{author.bookname}}</span>
+      <span class="author ele">{{author.authorname}}</span>
+      <span class="blurb ele">{{author.blurb}}</span>
+      <div class="buttondiv">
+      <a href="/book/{{author['id']}}" type="button" class="btn">Details</a>
+      <a href="/book/{{author['id']}}/reviews" type="button" class="btn">Read Reviews</a>
+      </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

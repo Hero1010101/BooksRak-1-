@@ -1,0 +1,17 @@
+{% include 'top.html' %}
+<title>Reviews for {{book.bookname}}</title>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    <div class="review_grid">
+      {% for review in reviews_data %}
+        <div class="review_item">
+        <strong class="grid_element_title">{{review.title}}</strong>
+        <p class="small_text">{{review.content}}</p>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="/book/{{book.id}}" class="btn a_special">Post your own review</a>
+    {% include 'footer.html' %}
+  </body>
+</html>
