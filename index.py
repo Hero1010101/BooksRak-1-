@@ -18,7 +18,7 @@ login_manager.init_app(app)
 
 DEFAULT_CONFIG = {
     'SECRET_CAPTCHA_KEY':
-    'nazewasuretaenoneomiidashite',  # use for JWT encoding/decoding
+    'Petrogradsmeltofcarbolicacid',  # use for JWT encoding/decoding
 
     # CAPTCHA GENERATION SETTINGS
     'EXPIRE_SECONDS': 60 * 10,  # takes precedence over EXPIRE_MINUTES
@@ -44,21 +44,28 @@ def loading_user(user_id):
 
 Session = sessionmaker(bind=engine)
 
-# Fill the database with data from CSV file (TiDB has an upload CSV file option on their site)
+# Search bar for books</li>
+# To enable search and recommendation, use some ML nonsense</li>
+# Add link to Z-library or Amazon for each book</li>
+# Input sanitization (VERY IMPORTANT)</li>
+# Improve aesthetics a bit (like button, star rating, user profile)</li>
+# More input validation using JS</li>
 
-# Add pagination for reviews (that thing with the pages listed (< 1 2 3 >)) OR infinite scroll
-# Search bar for books
-# Sorting books and reviews
-# Getting book info from some API
-# Add admin login
 
+@app.errorhandler(401)
+def unauthorized(error):
+  return render_template(
+      'error.html',
+      error_code=401,
+      error_message=
+      'Something went wrong and it really wasn\'t your failt, or was it?'), 401
 
 @app.errorhandler(403)
 def forbidden(error):
   return render_template(
       'error.html',
       error_code=403,
-      error_message='Forbidden, classified information'), 403
+      error_message='Forbidden, Classified Information.'), 403
 
 
 @app.errorhandler(404)
@@ -67,7 +74,7 @@ def page_not_found(error):
       'error.html',
       error_code=404,
       error_message=
-      'Not Found, someone typed something wrong and it was probably you.'), 404
+      'Page Not Found.'), 404
 
 
 @app.errorhandler(405)
@@ -75,7 +82,7 @@ def method_not_allowed(error):
   return render_template(
       'error.html',
       error_code=405,
-      error_message='Method Not Allowed, do better sweetie.'), 405
+      error_message='Method Not Allowed.'), 405
 
 
 @app.route("/")
@@ -140,7 +147,8 @@ def create_review(id):
       message = 'You have already reviewed this book.'
       return render_template('epicfail.html', message=message)
   else:
-    return 'Yikes sweetie, you failed the CAPTCHA, not a good look 💅'
+    message = 'Yikes sweetie, you failed the CAPTCHA, not a good look 💅'
+    return render_template('epicfail.html', message=message)
 
 
 def replace(text):
@@ -165,7 +173,6 @@ def load_reviews(id):
                            error_code=404,
                            error_message='No reviews for this book'), 404
   else:
-    # Since reviews_data is a list of dictionaries, we can pass it directly to the template
     return render_template('reviews.html',
                            reviews_data=reviews_data,
                            book=book)
@@ -227,7 +234,8 @@ def login():
       login_user(user)
       return redirect(url_for('home'))
     else:
-      return '<h1>Invalid username or password</h1>'
+      message = '<h1>Invalid username or password</h1>'
+      return render_template('epicfail.html', message=message)
   return render_template('login.html')
 
 
@@ -247,7 +255,7 @@ def profile(username):
 @login_required
 def logout():
   logout_user()
-  return redirect(url_for('login'))
+  return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
