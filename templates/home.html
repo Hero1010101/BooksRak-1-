@@ -1,21 +1,21 @@
 {% include 'top.html' %}
-    <title>Silver</title>
-  </head>
-  <body>
-    {% include 'nav.html' %}
-    <div class="container">
-    {% for author in authors %}
-      <div class="flex">
-      <span class="name ele">{{author.bookname}}</span>
-      <span class="author ele">{{author.authorname}}</span>
-      <span class="blurb ele">{{author.blurb}}</span>
-      <div class="buttondiv">
-      <a href="/book/{{author['id']}}" type="button" class="btn">Details</a>
-      <a href="/book/{{author['id']}}/reviews" type="button" class="btn">Read Reviews</a>
-      </div>
-      </div>
-    {% endfor %}
+  <title>Silver</title>
+</head>
+<body>
+  {% include 'nav.html' %}
+  <div class="container">
+    <h1>BooksRak</h1>
+    <i>It was the best of times, it was the worst of times.</i>
+    <div>
+    <img src= "{{url_for('static', filename='1570663126377.png')}}" >
     </div>
-    {% include 'footer.html' %}
+    <p>Whether you're a seasoned bibliophile or just starting your literary journey,BooksRak is your one-stop shop for everything book-related. Let's find your next favorite read together!</p>
+    <div class="flex">
+    <a href="/books" class="btn a_special">View books</a>
+    <a href="/login" class="btn a_special">Login</a>
+    <a href="/register" class="btn a_special">Register</a>
+    </div>
+  </div>
+  {% include 'footer.html' %}
   </body>
 </html>

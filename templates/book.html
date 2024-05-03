@@ -1,15 +1,36 @@
 {% include 'top.html' %}
-<title>{{book.bookname}}</title>
+<title>Submit review for {{book.bookname}}</title>
   </head>
   <body>
     {% include 'nav.html' %}
     <div class="container">
-      <span>{{book.authorname}}</span>
+      <h1>{{book.book_name}}</h1>
+      <span><img src="{{book.img_url}}" width=70 height=100></span>
+      <span>Author: {{book.author_name}}</span>
       <p>{{book.blurb}}</p>
-      <form id="review_form" action="/book/{{book['id']}}/review" method="post">
-      <span>Submit new review</span><br>
+      <form id="review_form" action="/book/{{book['book_id']}}/review" method="post">
       <input type="text" name="title" class="form_ele" id="review_title" required placeholder="title"><br>
       <textarea name="review_content" class="form_ele" id="review_text" required placeholder="Write something..."></textarea><br>
+      <!-- <select name="rating" required>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select> -->
+        <div class="rate">
+          <input type="radio" id="star5" name="rating" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div>
+      <div style="display:flex;flex-direction:row;justify-content:center;">Captcha:{{ captcha_html(captcha)|safe }}</div>
       <input class="post_review" type="submit" value="Post Review">
       </form>
     </div>

@@ -22,14 +22,15 @@ class User(UserMixin, Base):
     return str(self.user_id)
 
 
-def register_user(username, password):
-  if not (3 < len(username) < 21):
+def register_user(username, password, profile_picture):
+  if not (len(username) < 21):
     raise ValueError("Username must be between 4 and 20 characters long")
 
   hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
   new_user = User()
   new_user.username = username
   new_user.password = hashed_password
+  new_user.profile_picture_link = profile_picture
   session = Session()
   try:
     session.add(new_user)

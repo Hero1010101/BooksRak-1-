@@ -8,9 +8,12 @@
     <div class="container">
     <form action="" method="post" class="regis-login">
         <label for="username">Username</label>
-        <input type="text" name="username"><br>
+        <input type="text" minlength=4 maxlength=21 name="username" required><br>
         <label for="password">Password</label>
-        <input type="password" name="password"><br>
+        <input type="password" name="password" required><br>
+        <label for="profile_picture">Profile Picture <a href="https://catbox.moe" class="btn" target="_blank">Upload on Catbox</a></label>
+        <input type="url" name="profile_picture" placeholder="Upload your pfp on Catbox and link it here">
+        <div><span>Captcha:</span>{{ captcha_html(captcha)|safe }}</div>
         <input type="submit" value="Register">
     </form>
     </div>

@@ -1,17 +1,26 @@
 {% include 'top.html' %}
-<title>Reviews for {{book.bookname}}</title>
+<title>Reviews for {{book.book_name}}</title>
   </head>
   <body>
     {% include 'nav.html' %}
+    <h1>Reviews for {{book.book_name}}</h1>
     <div class="review_grid">
       {% for review in reviews_data %}
         <div class="review_item">
+        {% if review.profile_picture_link=='default.jpg' %}
+          <img src="{{ url_for('static', filename=review.profile_picture_link) }}" alt="Profile picture of {{ review.username }}" width=64 height=64>
+        {% else %}
+          <img src="{{ review.profile_picture_link }}" alt="Profile picture of {{ review.username }}" width=64 height=64>
+        {% endif %}
+        <a href="/@{{review.username}}">@{{review.username}}</a>
         <strong class="grid_element_title">{{review.title}}</strong>
+        <p>Rating: {{review.review_rating}}</p>
         <p class="small_text">{{review.content}}</p>
+        <button type="button" class="like-button" data-review-id="{{ review.review_id }}">❤ {{ review.likes }}</button>
         </div>
       {% endfor %}
     </div>
-    <a href="/book/{{book.id}}" class="btn a_special">Post your own review</a>
+    <a href="/book/{{book.book_id}}" class="btn a_special">Post your own review</a>
     {% include 'footer.html' %}
   </body>
 </html>

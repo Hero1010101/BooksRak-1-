@@ -1,0 +1,22 @@
+{% include 'top.html' %}
+    <title>Silver</title>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    <div class="container">
+    {% for book in books %}
+      <div class="flex">
+      <img src="{{book.img_url}}" width=70 height=100>
+      <span class="name ele">{{book.book_name}}</span>
+      <span class="author ele">{{book.author_name}}</span>
+      <span class="blurb ele">{{book.avg_rating}}</span>
+      <div class="buttondiv">
+      <a href="/book/{{book['book_id']}}" type="button" class="btn">Details</a>
+      <a href="/book/{{book['book_id']}}/reviews" type="button" class="btn">Read Reviews</a>
+      </div>
+      </div>
+    {% endfor %}
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>
