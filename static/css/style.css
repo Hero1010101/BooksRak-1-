@@ -14,12 +14,12 @@
 
 @font-face {
   font-family: "DINPro";
-  src: url("../static/DINProLight.otf");
+  src: url("../DINProLight.otf");
   font-display: swap;
 }
 
 .sans {
-  font-family: "Segoe UI", "Arial", "Roboto", system-ui, sans-serif;
+  font-family: "DINPro", system-ui, sans-serif;
 }
 
 .mascot_img {
@@ -67,6 +67,7 @@ a {
   text-decoration: none;
   color: #ccc;
 }
+
 .nav {
   height: 10vh;
   display: flex;
@@ -249,7 +250,7 @@ img {
   margin: 10px auto;
   padding: 1rem 0;
   font-size: 1rem;
-  font-family: "DINPro", serif;
+  font-family: "DINPro", system-ui, serif;
 }
 
 .form_ele {
