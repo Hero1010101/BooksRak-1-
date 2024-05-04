@@ -1,5 +1,5 @@
 {% include 'top.html' %}
-  <title>Silver</title>
+  <title>BooksRak</title>
 </head>
 <body>
   {% include 'nav.html' %}
@@ -7,13 +7,13 @@
     <h1>BooksRak</h1>
     <i>It was the best of times, it was the worst of times.</i>
     <div>
-    <img src= "{{url_for('static', filename='1570663126377.png')}}" >
+    <img class="mascot_img" src= "{{url_for('static', filename='1570663126377.png')}}" >
     </div>
     <p>Whether you're a seasoned bibliophile or just starting your literary journey,BooksRak is your one-stop shop for everything book-related. Let's find your next favorite read together!</p>
     <div class="flex">
-    <a href="/books" class="btn a_special">View books</a>
-    <a href="/login" class="btn a_special">Login</a>
-    <a href="/register" class="btn a_special">Register</a>
+    <a href="/books" class="a_special">View books</a>
+    <a href="/login" class="a_special">Login</a>
+    <a href="/register" class="a_special">Register</a>
     </div>
   </div>
   {% include 'footer.html' %}

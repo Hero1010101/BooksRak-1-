@@ -12,8 +12,22 @@
   background-color: var(--accpink);
 }
 
+@font-face {
+  font-family: "DINPro";
+  src: url("../static/DINProLight.otf");
+  font-display: swap;
+}
+
 .sans {
   font-family: "Segoe UI", "Arial", "Roboto", system-ui, sans-serif;
+}
+
+.mascot_img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
 }
 
 input[type=text], input[type=password], input[type=url] {
@@ -35,7 +49,6 @@ input[type=text], input[type=password], input[type=url] {
   gap: 1rem;
   text-align: left;
   border: 1px dashed var(--accpink);
-  background: #ac558544;
 }
 
 body {
@@ -110,8 +123,6 @@ a {
 
 img {
   border: 1px solid pink;
-  max-height: 100px;
-  max-width: 100px;
 }
 
 .container {
@@ -190,9 +201,46 @@ img {
   color: black;
 }
 
-.a_special{
-  display:block;
+.a_special {
+  display: block;
+  padding: 0.5rem;
   margin: 0 auto;
+  border: 1px solid #ccc;
+  width: fit-content;
+}
+
+.a_special:hover {
+  color: #ffd2ad;
+  border: 1px solid #ffd2ad;
+}
+
+.external_links {
+  background: transparent;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+
+}
+
+.external_links::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffd2ad;
+  font-size: 24px;
+  font-weight: bold;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.external_links:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 #review_form {
@@ -200,6 +248,8 @@ img {
   width: 90%;
   margin: 10px auto;
   padding: 1rem 0;
+  font-size: 1rem;
+  font-family: "DINPro", serif;
 }
 
 .form_ele {
@@ -208,6 +258,8 @@ img {
   margin: 1rem;
   border: 1px dashed pink;
   width: 80%;
+  font-family: inherit;
+  font-size: inherit;
 }
 #review_title {
   background: transparent;
@@ -329,16 +381,30 @@ html::-webkit-scrollbar-thumb {
     content: '★ ';
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffd780;    
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #ffd780;  
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+    color: #ffd780;
+}
+
+.captcha_div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.error_container {
+  width: 50vw;
+  height: 50vh;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #1f1f1f
 }

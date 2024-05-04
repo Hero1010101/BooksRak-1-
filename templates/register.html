@@ -1,19 +1,22 @@
 {% include 'top.html' %}
 <title>Register</title>
-  </head>
-  <body>
-    <div style="height:10vh;">
-      <h1 style="margin: auto;">Welcome!</h1>
-    </div>
+</head>
+<body>
+  {% include 'nav.html' %}
     <div class="container">
     <form action="" method="post" class="regis-login">
+        <h1>Register</h1>
+        <a href="/login" class="external_links">Already have an account? Log in.</a>
         <label for="username">Username</label>
-        <input type="text" minlength=4 maxlength=21 name="username" required><br>
+        <input type="text" minlength=4 maxlength=21 name="username" required>
         <label for="password">Password</label>
-        <input type="password" name="password" required><br>
-        <label for="profile_picture">Profile Picture <a href="https://catbox.moe" class="btn" target="_blank">Upload on Catbox</a></label>
+        <input type="password" name="password" required>
+        <label for="profile_picture">Profile Picture <a href="https://catbox.moe" class="external_links" target="_blank">Upload on Catbox</a></label>
         <input type="url" name="profile_picture" placeholder="Upload your pfp on Catbox and link it here">
-        <div><span>Captcha:</span>{{ captcha_html(captcha)|safe }}</div>
+        <div class="captcha_div">
+          <p>Captcha:</p>
+          {{ captcha_html(captcha)|safe }}
+        </div>
         <input type="submit" value="Register">
     </form>
     </div>

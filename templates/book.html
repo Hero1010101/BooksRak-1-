@@ -8,7 +8,10 @@
       <span><img src="{{book.img_url}}" width=70 height=100></span>
       <span>Author: {{book.author_name}}</span>
       <p>{{book.blurb}}</p>
+      <a href= "https://amazon.com/s?k={{book.book_name}}" class="a_special" target="_blank">Buy on Amazon</a>
+        <a href= "https://libgen.rs/fiction/?q={{book.book_name}}" class="a_special" target="_blank">Read on Libgen</a>
       <form id="review_form" action="/book/{{book['book_id']}}/review" method="post">
+      <p>Post your review</p>
       <input type="text" name="title" class="form_ele" id="review_title" required placeholder="title"><br>
       <textarea name="review_content" class="form_ele" id="review_text" required placeholder="Write something..."></textarea><br>
       <!-- <select name="rating" required>

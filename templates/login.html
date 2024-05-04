@@ -1,12 +1,12 @@
 {% include 'top.html' %}
 <title>Login</title>
   </head>
-  <body>
-    <div style="height:10vh;">
-      <h1 style="margin: auto;">Welcome!</h1>
-    </div>
+<body>
+  {% include 'nav.html' %}
     <div class="container">
     <form action="" method="post" class="regis-login">
+      <h1>Log in to BooksRak</h1>
+      <a href="/register" class="external_links">Don't have an account? Sign up.</a>
       <label for="username">Username</label>
       <input type="text" minlength=4 maxlength=21 name="username" required>
       <label for="password">Password</label>

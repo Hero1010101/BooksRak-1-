@@ -1,15 +1,16 @@
 from flask import Flask, jsonify, redirect, render_template, request, url_for, flash
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
-from user import register_user, authenticate_user, User, user_loader
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, RadioField, validators
+from flask_simple_captcha import CAPTCHA
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 import os
 import re
-from database import (add_review_to_db, load_books_from_db, load_book_details,
-                      load_reviews_from_db, engine)
+from user import register_user, authenticate_user, User, user_loader
+from database import (add_review_to_db, load_books_from_db, load_book_details, load_reviews_from_db, engine)
 from filter import REPLACEMENTS
-from flask_simple_captcha import CAPTCHA
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'alies_grises')
@@ -46,35 +47,40 @@ Session = sessionmaker(bind=engine)
 
 # Search bar for books</li>
 # To enable search and recommendation, use some ML nonsense</li>
-# Add link to Z-library or Amazon for each book</li>
-# Input sanitization (VERY IMPORTANT)</li>
-# Improve aesthetics a bit (like button, star rating, user profile)</li>
-# More input validation using JS</li>
+
+class ReviewForm(FlaskForm):
+    title = StringField('title', [validators.Length(min=1, max=100), validators.DataRequired()])
+    review_content = TextAreaField('review-content', [validators.Length(min=1), validators.DataRequired()])
+    rating = RadioField('Rating', choices=[('1', '1 Star'), ('2', '2 Stars'), ('3', '3 Stars'), ('4', '4 Stars'), ('5', '5 Stars')], validators=[validators.DataRequired()])
+
 
 
 @app.errorhandler(401)
 def unauthorized(error):
+  url = '/login'
   return render_template(
       'error.html',
       error_code=401,
       error_message=
-      'Something went wrong and it really wasn\'t your failt, or was it?'), 401
+      'You must be logged in to access this page. Please log in or sign up.', url=url), 401
 
 @app.errorhandler(403)
 def forbidden(error):
+  url = '/'
   return render_template(
       'error.html',
       error_code=403,
-      error_message='Forbidden, Classified Information.'), 403
+      error_message='Forbidden, Classified Information.', url=url), 403
 
 
 @app.errorhandler(404)
 def page_not_found(error):
+  url = '/'
   return render_template(
       'error.html',
       error_code=404,
       error_message=
-      'Page Not Found.'), 404
+      'Page Not Found.', url=url), 404
 
 
 @app.errorhandler(405)
@@ -149,7 +155,6 @@ def create_review(id):
   else:
     message = 'Yikes sweetie, you failed the CAPTCHA, not a good look 💅'
     return render_template('epicfail.html', message=message)
-
 
 def replace(text):
   for word, replacement in REPLACEMENTS.items():
@@ -232,7 +237,7 @@ def login():
     user = authenticate_user(username, password)
     if user:
       login_user(user)
-      return redirect(url_for('home'))
+      return redirect(url_for('bookspage'))
     else:
       message = '<h1>Invalid username or password</h1>'
       return render_template('epicfail.html', message=message)
