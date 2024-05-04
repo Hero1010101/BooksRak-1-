@@ -313,6 +313,10 @@ img {
   padding: 0;
 }
 
+.thick_border {
+  border: 4px solid pink;
+}
+
 .review_pfp {
   border-radius: 50%;
   float: left;

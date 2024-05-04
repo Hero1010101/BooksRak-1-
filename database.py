@@ -74,18 +74,6 @@ def load_book_details(book_id):
     else:
       return rows[0]._asdict()
 
-
-# def load_reviews_from_db(id):
-#   with engine.connect() as conn:
-#     result = conn.execute(text("SELECT * FROM reviews WHERE book_id = :val"),
-#                           {"val": id})
-#     rows = result.all()
-#     if len(rows) == 0:
-#       return None
-#     else:
-#       return rows
-
-
 def load_reviews_from_db(book_id):
   with engine.connect() as conn:
     # Update the SQL query to include a JOIN with the users table

@@ -5,9 +5,9 @@
     {% include 'nav.html' %}
     <div class="profile-container">
       {% if user.profile_picture_link %}
-          <img src="{{ user.profile_picture_link }}" alt="Profile Picture" height=128 width=128 style="border-radius: 50%;">
+          <img src="{{ user.profile_picture_link }}" alt="Profile Picture" height=128 width=128 class="review_pfp thick_border">
       {% else %}
-           <img src="{{url_for('static', filename='default.jpg')}}" alt="Profile Picture" height=128 width=128 style="border-radius: 50%;">
+           <img src="{{url_for('static', filename='default.jpg')}}" alt="Profile Picture" height=128 width=128 class="review_pfp thick_border">
       {% endif %}
       <h1>@{{ user.username }}</h1>
       <p>User ID: {{ user.user_id }}</p>

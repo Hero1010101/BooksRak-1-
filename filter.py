@@ -14,5 +14,4 @@ REPLACEMENTS = {
     "gamer": "g*mer",
     "journalist": "journ*list",
     "journalism": "journ*lism",
-
 }

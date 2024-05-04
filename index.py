@@ -9,7 +9,8 @@ from sqlalchemy.orm import sessionmaker
 import os
 import re
 from user import register_user, authenticate_user, User, user_loader
-from database import (add_review_to_db, load_books_from_db, load_book_details, load_reviews_from_db, engine)
+from database import (add_review_to_db, load_books_from_db, load_book_details,
+                      load_reviews_from_db, engine)
 from filter import REPLACEMENTS
 
 app = Flask(__name__)
@@ -48,11 +49,19 @@ Session = sessionmaker(bind=engine)
 # Search bar for books</li>
 # To enable search and recommendation, use some ML nonsense</li>
 
-class ReviewForm(FlaskForm):
-    title = StringField('title', [validators.Length(min=1, max=100), validators.DataRequired()])
-    review_content = TextAreaField('review-content', [validators.Length(min=1), validators.DataRequired()])
-    rating = RadioField('Rating', choices=[('1', '1 Star'), ('2', '2 Stars'), ('3', '3 Stars'), ('4', '4 Stars'), ('5', '5 Stars')], validators=[validators.DataRequired()])
 
+class ReviewForm(FlaskForm):
+  title = StringField(
+      'title', [validators.Length(min=1, max=100),
+                validators.DataRequired()])
+  review_content = TextAreaField(
+      'review-content', [validators.Length(min=1),
+                         validators.DataRequired()])
+  rating = RadioField('Rating',
+                      choices=[('1', '1 Star'), ('2', '2 Stars'),
+                               ('3', '3 Stars'), ('4', '4 Stars'),
+                               ('5', '5 Stars')],
+                      validators=[validators.DataRequired()])
 
 
 @app.errorhandler(401)
@@ -62,33 +71,33 @@ def unauthorized(error):
       'error.html',
       error_code=401,
       error_message=
-      'You must be logged in to access this page. Please log in or sign up.', url=url), 401
+      'You must be logged in to access this page. Please log in or sign up.',
+      url=url), 401
+
 
 @app.errorhandler(403)
 def forbidden(error):
   url = '/'
-  return render_template(
-      'error.html',
-      error_code=403,
-      error_message='Forbidden, Classified Information.', url=url), 403
+  return render_template('error.html',
+                         error_code=403,
+                         error_message='Forbidden, Classified Information.',
+                         url=url), 403
 
 
 @app.errorhandler(404)
 def page_not_found(error):
   url = '/'
-  return render_template(
-      'error.html',
-      error_code=404,
-      error_message=
-      'Page Not Found.', url=url), 404
+  return render_template('error.html',
+                         error_code=404,
+                         error_message='Page Not Found.',
+                         url=url), 404
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
-  return render_template(
-      'error.html',
-      error_code=405,
-      error_message='Method Not Allowed.'), 405
+  return render_template('error.html',
+                         error_code=405,
+                         error_message='Method Not Allowed.'), 405
 
 
 @app.route("/")
@@ -96,10 +105,12 @@ def home():
   #books = load_books_from_db()
   return render_template('home.html')
 
+
 @app.route("/books")
 def bookspage():
   books = load_books_from_db()
   return render_template('oldhome.html', books=books)
+
 
 @app.route("/new")
 def new():
@@ -155,6 +166,7 @@ def create_review(id):
   else:
     message = 'Yikes sweetie, you failed the CAPTCHA, not a good look 💅'
     return render_template('epicfail.html', message=message)
+
 
 def replace(text):
   for word, replacement in REPLACEMENTS.items():
@@ -234,12 +246,13 @@ def login():
   if request.method == 'POST':
     username = request.form['username']
     password = request.form['password']
+    username = username.lower()
     user = authenticate_user(username, password)
     if user:
       login_user(user)
       return redirect(url_for('bookspage'))
     else:
-      message = '<h1>Invalid username or password</h1>'
+      message = 'Invalid username or password'
       return render_template('epicfail.html', message=message)
   return render_template('login.html')
 

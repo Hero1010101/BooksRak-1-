@@ -9,30 +9,6 @@ toggleButton.addEventListener("click", () => {
   }
 });
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.querySelectorAll('.like_button').forEach(button => {
-//         button.addEventListener('click', function() {
-//             const reviewId = this.dataset.reviewId;
-//             console.log("Review ID:", reviewId);  // Ensure the ID is being captured
-//             fetch(`/review/${reviewId}/like`, {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 }
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 if (data.success) {
-//                     this.textContent = `<i class="lni lni-heart-fill"></i> ${data.new_likes}`;
-//                 } else {
-//                     console.error('Failed to update likes due to server error.');
-//                 }
-//             })
-//             .catch(error => console.error('Error:', error));
-//         });
-//     });
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like_button').forEach(button => {
         button.addEventListener('click', function() {
@@ -61,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 
 document.querySelectorAll('.star-rating label').forEach(label => {
     label.addEventListener('click', function () {
