@@ -9,8 +9,32 @@ toggleButton.addEventListener("click", () => {
   }
 });
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.querySelectorAll('.like_button').forEach(button => {
+//         button.addEventListener('click', function() {
+//             const reviewId = this.dataset.reviewId;
+//             console.log("Review ID:", reviewId);  // Ensure the ID is being captured
+//             fetch(`/review/${reviewId}/like`, {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 }
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 if (data.success) {
+//                     this.textContent = `<i class="lni lni-heart-fill"></i> ${data.new_likes}`;
+//                 } else {
+//                     console.error('Failed to update likes due to server error.');
+//                 }
+//             })
+//             .catch(error => console.error('Error:', error));
+//         });
+//     });
+// });
+
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.like-button').forEach(button => {
+    document.querySelectorAll('.like_button').forEach(button => {
         button.addEventListener('click', function() {
             const reviewId = this.dataset.reviewId;
             console.log("Review ID:", reviewId);  // Ensure the ID is being captured
@@ -23,7 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    this.textContent = `❤ ${data.new_likes}`;
+                    // Find the <i> element within the button and update its class and the text
+                    const icon = this.querySelector('i');
+                    icon.className = 'lni lni-heart-fill';
+                    icon.style.color = 'pink';
+                    this.textContent = ` ${data.new_likes}`;
+                    this.prepend(icon);
                 } else {
                     console.error('Failed to update likes due to server error.');
                 }
@@ -32,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 
 document.querySelectorAll('.star-rating label').forEach(label => {
     label.addEventListener('click', function () {

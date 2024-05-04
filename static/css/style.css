@@ -304,6 +304,37 @@ img {
   border: 1px solid pink;
   margin-bottom: 1rem;
   background-color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.review_item > h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.review_pfp {
+  border-radius: 50%;
+  float: left;
+  margin: 0.5rem;
+}
+
+.review_username {
+  float: left;
+  font-size: 1.2rem;
+}
+.review_rating {
+  float: right;
+  margin-right: 0.5rem;
+}
+
+.like_button {
+  appearance: none;
+  outline: none;
+  background: transparent;
+  font-size: 2rem;
+  border: none;
+  color: white;
 }
 
 .grid_element_title {
