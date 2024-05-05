@@ -33,7 +33,9 @@
           <input type="radio" id="star1" name="rating" value="1" />
           <label for="star1" title="text">1 star</label>
         </div>
-      <div style="display:flex;flex-direction:row;justify-content:center;">Captcha:{{ captcha_html(captcha)|safe }}</div>
+      <div style="margin-bottom: 1rem;"><p>Captcha:</p>
+        {{ captcha_html(captcha)|safe }}
+      </div>
       <input class="post_review" type="submit" value="Post Review">
       </form>
     </div>

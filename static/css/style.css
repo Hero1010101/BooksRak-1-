@@ -44,8 +44,8 @@ input[type=text], input[type=password], input[type=url] {
 .regis-login {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-  padding: 2rem;
+  margin: 0.2rem;
+  padding: 1rem;
   gap: 1rem;
   text-align: left;
   border: 1px dashed var(--accpink);
@@ -245,10 +245,14 @@ img {
 }
 
 #review_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
   border: 1px solid pink;
-  width: 90%;
+  width: 100%;
   margin: 10px auto;
-  padding: 1rem 0;
+  padding: 0;
   font-size: 1rem;
   font-family: "DINPro", system-ui, serif;
 }
@@ -399,6 +403,10 @@ html::-webkit-scrollbar-thumb {
     float: left;
     height: 46px;
     padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -432,9 +440,9 @@ html::-webkit-scrollbar-thumb {
 }
 
 .captcha_div {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 1rem; */
 }
 
 .error_container {
