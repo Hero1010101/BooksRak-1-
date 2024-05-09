@@ -1,0 +1,63 @@
+{
+    "name": "BooksRak",
+    "short_name": "BooksRak",
+    "version": "2",
+    "description": "BooksRak is your one-stop platform for everything book-related.",
+    "lang": "en-GB",
+    "start_url": "../",
+    "id" : "../",
+    "scope": "../",
+    "theme_color": "#FFC0CB",
+    "background_color": "#1F1F1F",
+    "display": "standalone",
+    "display_override": ["fullscreen", "minimal-ui"],
+    "icons": [
+        {
+          "src": "./images/favicon.png",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "./images/favicon.png",
+          "sizes": "512x512",
+          "purpose": "maskable"
+        }
+      ],
+    "screenshots": [
+        {
+        "src": "./images/ss0.png",
+         "sizes": "1440x3200",
+         "type": "image/png",
+         "form_factor": "narrow",
+         "label": "Screenshot"
+       },
+       {
+         "src": "./images/ss1.png",
+          "sizes": "1440x3200",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "label": "Screenshot"
+        },
+        {
+         "src": "./images/ss2.png",
+          "sizes": "1920x984",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Screenshot"
+        },
+        {
+          "src": "./images/ss3.png",
+           "sizes": "1920x984",
+           "type": "image/png",
+           "form_factor": "wide",
+           "label": "Screenshot"
+         },
+        {
+         "src": "./images/ss4.png",
+          "sizes": "1920x984",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Screenshot"
+        }
+    ]
+}
