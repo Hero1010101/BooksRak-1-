@@ -153,9 +153,9 @@ img {
 .flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 2rem;
   min-height: 200px;
 }
@@ -166,11 +166,19 @@ img {
   /* width: 20%; */
   font-weight: normal;
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20%;
 }
 
 .name {
   font-family: "Helvetica";
   font-weight: bold;
+  /* white-space: nowrap; */
+  white-space: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .blurb {
@@ -180,10 +188,9 @@ img {
 
 .buttondiv {
   display:flex;
-  flex-direction:row;
+  flex-direction:column;
   justify-content:space-around;
   align-items: center;
-  gap: 1rem;
 }
 
 .btn {
@@ -388,8 +395,16 @@ html::-webkit-scrollbar-thumb {
 }
 
 @media only all and (max-width: 900px) {
+  .container {
+    padding: 1rem;
+    margin: 0 0.5rem;
+  }
+  .name {
+    width: 40%;
+  }
   .ele {
-    width: 50%;
+    width: 40%;
+    max-width: 40%;
   }
   .author, .blurb {
     display: none;

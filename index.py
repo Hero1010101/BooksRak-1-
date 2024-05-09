@@ -71,7 +71,7 @@ def unauthorized(error):
       'error.html',
       error_code=401,
       error_message=
-      'You must be logged in to access this page. Please log in or sign up.',
+      'You must be logged in to perform this action. Please log in or sign up.',
       url=url), 401
 
 
