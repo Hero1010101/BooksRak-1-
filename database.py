@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text, Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, query
 from sqlalchemy.sql import text
 import os
 
@@ -8,7 +8,7 @@ DB_STRING = os.environ['DB_CONN_STR']
 Base = declarative_base()
 engine = create_engine(DB_STRING, echo=True)
 Session = sessionmaker(bind=engine)
-
+session = Session()
 
 class Book(Base):
   __tablename__ = 'books'
@@ -54,6 +54,7 @@ class Book(Base):
     session.commit()
     session.close()
 
+# BookQuery = db.session.query_property()
 
 def load_books_from_db():
   with engine.connect() as conn:

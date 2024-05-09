@@ -22,6 +22,10 @@
   font-family: "DINPro", system-ui, sans-serif;
 }
 
+.left {
+  text-align: left;
+}
+
 .mascot_img {
   width: 100%;
   height: auto;
@@ -71,7 +75,7 @@ a {
 .nav {
   height: 10vh;
   display: flex;
-  margin: 1rem;
+  margin: 0.5rem;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -112,7 +116,7 @@ a {
 
 .homeurl {
   font-family: serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0.5rem;
   transition: all 0.3s;
 }
@@ -122,8 +126,25 @@ a {
   color: pink;
 }
 
+.search_field {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_field input {
+  width: 80%;
+}
+
 img {
   border: 1px solid pink;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .container {

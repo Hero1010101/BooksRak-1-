@@ -3,6 +3,10 @@
   </head>
   <body>
     {% include 'nav.html' %}
+    <form class="search_field" action="{{ url_for('search_books') }}" method="get">
+        <input type="text" name="query" required placeholder="Search for books...">
+        <!-- <input class="btn" type="submit" value="Submit"/> -->
+    </form>
     <div class="container">
     {% for book in books %}
       <div class="flex">

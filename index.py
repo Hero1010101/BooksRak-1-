@@ -10,7 +10,7 @@ import os
 import re
 from user import register_user, authenticate_user, User, user_loader
 from database import (add_review_to_db, load_books_from_db, load_book_details,
-                      load_reviews_from_db, engine)
+                      load_reviews_from_db, engine, Book)
 from filter import REPLACEMENTS
 
 app = Flask(__name__)
@@ -45,9 +45,7 @@ def loading_user(user_id):
 
 
 Session = sessionmaker(bind=engine)
-
-# Search bar for books</li>
-# To enable search and recommendation, use some ML nonsense</li>
+session = Session()
 
 
 class ReviewForm(FlaskForm):
@@ -220,6 +218,14 @@ def like_review(review_id):
       print(f"Error during transaction: {e}")
       return jsonify(success=False, message="Failed to update likes."), 500
 
+@app.route('/search')
+def search_books():
+    query = request.args.get('query', '')
+    if query:
+        books = session.query(Book).filter(Book.book_name.ilike(f'%{query}%')).all()
+    else:
+        books = []
+    return render_template('searchresults.html', books=books)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

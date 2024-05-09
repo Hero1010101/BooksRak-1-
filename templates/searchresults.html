@@ -1,0 +1,26 @@
+{% include 'top.html' %}
+  <title>BooksRak</title>
+</head>
+<body>
+  {% include 'nav.html' %}
+  <div class="container left">
+    {% block content %}
+        <h1>Search Results</h1>
+        {% if books %}
+            <ul>
+            {% for book in books %}
+                <li>
+                    <strong>{{ book.book_name }}</strong><br>
+                    Author: {{ book.author_name }}
+                    <div><img src="{{ book.img_url }}" alt="Cover image" width="70" height="100"></div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found.</p>
+        {% endif %}
+    {% endblock %}
+  </div>
+  {% include 'footer.html' %}
+</body>
+</html>

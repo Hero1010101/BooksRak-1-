@@ -3,6 +3,10 @@
 </head>
 <body>
   {% include 'nav.html' %}
+  <form class="search_field" action="{{ url_for('search_books') }}" method="get">
+      <input type="text" name="query" required placeholder="Search for books...">
+      <!-- <input class="btn" type="submit" value="Submit"/> -->
+  </form>
   <div class="container">
     <h1>BooksRak</h1>
     <p>Whether you're a seasoned bibliophile or just starting your literary journey, BooksRak is your one-stop shop for everything book-related. Let's find your next favorite read together!</p>
