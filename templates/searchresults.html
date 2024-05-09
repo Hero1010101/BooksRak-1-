@@ -1,0 +1,30 @@
+{% include 'top.html' %}
+  <title>BooksRak</title>
+</head>
+<body>
+  {% include 'nav.html' %}
+  <form class="search_field" action="{{ url_for('search_books') }}" method="get">
+      <input type="text" name="query" required placeholder="Search for books...">
+      <!-- <input class="btn" type="submit" value="Submit"/> -->
+  </form>
+  <div class="container left">
+    {% block content %}
+        <h1>Search Results</h1>
+        {% if books %}
+            <ul>
+            {% for book in books %}
+                <li>
+                    <strong><a href="/book/{{book['book_id']}}">{{ book.book_name }}</a></strong><br>
+                    Author: {{ book.author_name }}
+                    <div><img src="{{ book.img_url }}" alt="Cover image" width="70" height="100"></div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found.</p>
+        {% endif %}
+    {% endblock %}
+  </div>
+  {% include 'footer.html' %}
+</body>
+</html>

@@ -21,21 +21,32 @@ class User(UserMixin, Base):
   def get_id(self):
     return str(self.user_id)
 
+def register_user(username, password, profile_picture):
+  # Normalize the username to lowercase
+  normalized_username = username.lower()
 
-def register_user(username, password):
-  if not (3 < len(username) < 21):
-    raise ValueError("Username must be between 4 and 20 characters long")
+  if not (4 <= len(username) < 21):
+      raise ValueError("Username must be between 4 and 20 characters long")
+
+  session = Session()
+  # Check if the username already exists
+  existing_user = session.query(User).filter(func.lower(User.username) == normalized_username).first()
+  if existing_user:
+      session.close()
+      raise ValueError("Username already taken")
 
   hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+
   new_user = User()
-  new_user.username = username
+  new_user.username = normalized_username
   new_user.password = hashed_password
-  session = Session()
+  new_user.profile_picture_link = profile_picture
+
   try:
-    session.add(new_user)
-    session.commit()
+      session.add(new_user)
+      session.commit()
   finally:
-    session.close()
+      session.close()
 
 
 def authenticate_user(username, password):

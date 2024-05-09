@@ -2,10 +2,11 @@
 <title>Oops!</title>
 </head>
 <body>
-  <div class="container">
-    {{error_code}}<br>
-    {{error_message}}
-    <a class="btn" style="margin: 0 auto;" href="/">Home</a>
+  <div class="error_container">
+    <img class="mascot_img" src= "{{url_for('static', filename='1570663126377.png')}}" >
+    <h1>{{error_code}}</h1>
+    <h2>{{error_message}}</h2>
+    <a class="btn" style="margin: 0 auto;" href="{{url}}">Login/Return to Home</a>
   </div>
 </body>
 </html>

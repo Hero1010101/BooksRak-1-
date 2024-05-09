@@ -3,16 +3,15 @@
   </head>
   <body>
     {% include 'nav.html' %}
-    <div class="container">
-      <h1>Profile of {{ user.username }}</h1>
-      <p>User ID: {{ user.user_id }}</p>
-      <p>Username: {{ user.username }}</p>
-      <p>Account created on: {{ user.created_at }}</p>
+    <div class="profile-container">
       {% if user.profile_picture_link %}
-          <img src="{{ user.profile_picture_link }}" alt="Profile Picture">
+          <img src="{{ user.profile_picture_link }}" alt="Profile Picture" height=128 width=128 class="review_pfp thick_border">
       {% else %}
-          <p>No profile picture provided.</p>
+           <img src="{{url_for('static', filename='default.jpg')}}" alt="Profile Picture" height=128 width=128 class="review_pfp thick_border">
       {% endif %}
+      <h1>@{{ user.username }}</h1>
+      <p>User ID: {{ user.user_id }}</p>
+      <p>Account created on: {{ user.created_at }}</p>
     </div>
     {% include 'footer.html' %}
   </body>
